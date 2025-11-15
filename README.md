@@ -1,5 +1,6 @@
 # STED-EC
 MISAR-seq analysis pipline for STED-EC data
+![image](https://github.com/jiangfuqing/STED-EC/blob/main/MISAR-seq.jpg)
 
 ## For fastq mapping
 See pipline in github: https://github.com/jiangfuqing/MISAR-seq
