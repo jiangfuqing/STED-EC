@@ -33,7 +33,7 @@ dat <- Read10X_h5("raw_feature_bc_matrix.h5")
 mat <- dat$`Gene Expression`
 
 # read spatial barcode file.
-barcode <- read.csv("/public/home/fqjiang_gdl/SPARC/barcode_file/SPARC_barcode.csv",header = T,row.names = 1)
+barcode <- read.csv("~/Scripts/Other_scripts/barcode.csv",header = T,row.names = 1)
 
 pos <- paste0(barcode$array_col, "x", barcode$array_row)
 colnames(mat) <- pos
