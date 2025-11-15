@@ -72,11 +72,11 @@ location <- read.table(paste0("position_", sampleId,".txt"), sep =",", header = 
 x <- as.character(location[1,])[-1]
 x <- as.data.frame(x)
 colnames(x) <- "array"
-y <- read.csv("/public/home/fqjiang_gdl/SPARC/barcode_file/SPARC_barcode_filter.csv", header = T) 
+y <- read.csv("~/Scripts/Other_scripts/barcode_filter.csv", header = T) 
 z <- merge(x,y,by="array")
 
 # read the spatial barcode
-barcode <- read.csv("/public/home/fqjiang_gdl/SPARC/barcode_file/SPARC_barcode.csv",header = T,row.names = 1)
+barcode <- read.csv("~/Scripts/Other_scripts/barcode.csv",header = T,row.names = 1)
 #rownames(barcode) <- str_split_fixed(rownames(barcode), "#", 2)[,2]
 dat <- AddMetaData(object = dat, metadata = barcode)
 
