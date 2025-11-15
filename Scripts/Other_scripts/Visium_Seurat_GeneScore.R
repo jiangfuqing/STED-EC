@@ -35,11 +35,11 @@ location <- read.table(paste0("position_", sampleId,".txt"), sep =",", header = 
 x <- as.character(location[1,])[-1]
 x <- as.data.frame(x)
 colnames(x) <- "array"
-y <- read.csv("/public/home/fqjiang_gdl/SPARC/barcode_file/SPARC_barcode_filter.csv", header = T) 
+y <- read.csv("~/Scripts/Other_scripts/barcode_filter.csv", header = T) 
 z <- merge(x,y,by="array")
 
 # read the spatial barcode
-barcode <- read.csv("/public/home/fqjiang_gdl/SPARC/barcode_file/SPARC_barcode.csv",header = T,row.names = 1)
+barcode <- read.csv("~/Scripts/Other_scripts/barcode.csv",header = T,row.names = 1)
 #rownames(barcode) <- str_split_fixed(rownames(barcode), "#", 2)[,2]
 dat <- AddMetaData(object = dat, metadata = barcode)
 
@@ -160,7 +160,7 @@ if(Species == "mouse"){
   dat[["percent.rp"]] <- PercentageFeatureSet(dat, pattern = "^Rp[sl]")} else{dat[["percent.mt"]] <- PercentageFeatureSet(dat, pattern = "^MT-")
   dat[["percent.rp"]] <- PercentageFeatureSet(dat, pattern = "^RP[SL]") }
 
-saveRDS(dat, file = paste0(sampleId,"_Visium_Seurat_GeneScore1.rds"))
+saveRDS(dat, file = paste0(sampleId,"_Visium_Seurat_GeneScore.rds"))
 
 #save RNA object
 names(dat@assays) <- c("Spatial","ATAC","GeneScore")
@@ -172,4 +172,5 @@ write_h5(dat,paste0(sampleId,"-ATAC.h5"),assay.name="spatial")
 
 #save GeneScore object
 names(dat@assays) <- c("RNA","ATAC","Spatial")
+
 write_h5(dat,paste0(sampleId,"-GeneScore.h5"),assay.name="spatial")
